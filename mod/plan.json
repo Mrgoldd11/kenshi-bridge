@@ -2,7 +2,7 @@
   "name": "KenshiBridge.mod",
   "info": {
     "author": "Mrgoldd11",
-    "description": "Kenshi Bridge: локальный мост для Kenshi Mod Editor (127.0.0.1:47801). Нужен RE_Kenshi. Данных игры не меняет."
+    "description": "Kenshi Bridge: local bridge for Cactus (127.0.0.1:47801). Needs RE_Kenshi. Does not change game data."
   },
   "ops": []
 }
