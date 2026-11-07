@@ -1,5 +1,7 @@
 # Kenshi Bridge
 
+**[⬇ Download Kenshi Bridge 0.1.0 (Releases → Assets)](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest)**
+
 A small plugin for [RE_Kenshi](https://github.com/BFrizzleFoShizzle/RE_Kenshi) that connects a running Kenshi to external tools such as [Cactus](https://github.com/Mrgoldd11/Cactus) (a mod editor for Kenshi). Inside the game it opens a local server on `127.0.0.1:47801` and:
 
 - reports state: selected character, position, faction, current dialogue, in-game time;
@@ -17,7 +19,7 @@ Built for **Kenshi 1.0.65 (Steam or GOG)**, RE_Kenshi 0.3.5, KenshiLib 0.5.0. Ch
 ## Install (from the release)
 
 1. Install RE_Kenshi and start the game through it at least once.
-2. Download `KenshiBridge-0.1.0-win-x64.zip` from [Releases](../../releases/latest) and copy the `KenshiBridge` folder into `<Kenshi>\mods\`.
+2. Download `KenshiBridge-0.1.0-win-x64.zip` from [Releases](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest) and copy the `KenshiBridge` folder into `<Kenshi>\mods\`.
 3. Enable **KenshiBridge** in the game launcher's mod tab.
 4. Check `<Kenshi>\RE_Kenshi_log.txt` for `[KenshiBridge] 0.1.0 listening on 127.0.0.1:47801`.
 
