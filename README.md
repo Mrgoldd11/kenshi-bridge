@@ -2,6 +2,8 @@
 
 **[⬇ Download Kenshi Bridge 0.1.0 (Releases → Assets)](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest)**
 
+[![VirusTotal: 0 / 66 detections](https://img.shields.io/badge/VirusTotal-0%20%2F%2066%20detections-2ea44f?logo=virustotal&logoColor=white)](https://www.virustotal.com/gui/file/3277bad35949c030775712fd85ce5db5d16077646e93c34edc736f54d5012394)
+
 A small plugin for [RE_Kenshi](https://github.com/BFrizzleFoShizzle/RE_Kenshi) that connects a running Kenshi to external tools such as [Cactus](https://github.com/Mrgoldd11/Cactus) (a mod editor for Kenshi). Inside the game it opens a local server on `127.0.0.1:47801` and:
 
 - reports state: selected character, position, faction, current dialogue, in-game time;
@@ -24,6 +26,17 @@ Built for **Kenshi 1.0.65 (Steam or GOG)**, RE_Kenshi 0.3.5, KenshiLib 0.5.0. Ch
 4. Check `<Kenshi>\RE_Kenshi_log.txt` for `[KenshiBridge] 0.1.0 listening on 127.0.0.1:47801`.
 
 Uninstall: disable the mod in the launcher and delete the folder.
+
+### Is it safe?
+
+The release archive was scanned on [VirusTotal](https://www.virustotal.com/gui/file/3277bad35949c030775712fd85ce5db5d16077646e93c34edc736f54d5012394) on 2026-11-07: **0 of 66 engines flagged it**. A plugin DLL is loaded into the game process, so you should be able to check it yourself:
+
+```
+SHA-256  3277bad35949c030775712fd85ce5db5d16077646e93c34edc736f54d5012394
+         KenshiBridge-0.1.0-win-x64.zip
+```
+
+In PowerShell: `Get-FileHash .\KenshiBridge-0.1.0-win-x64.zip` — the value must match. The full source is in this repository (GPLv3) and the plugin listens on `127.0.0.1` only.
 
 ## Build from source
 
