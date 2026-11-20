@@ -14,6 +14,23 @@ It does **not** change game data (its `.mod` is empty) and listens on `127.0.0.1
 
 **Optional.** Cactus works fine without it. The Bridge only adds live game features. Cactus (closed source freeware) and Kenshi Bridge (open source) share no code; they talk only through the local protocol described in [README_RU.md](README_RU.md) (protocol section, JSON over TCP; an English version is planned).
 
+## Commands
+
+Requests are JSON lines over TCP: `{"id": 1, "cmd": "state", "args": {}}`; the reply is `{"id": 1, "ok": true, "result": ...}` or `{"id": 1, "ok": false, "error": {"code", "message"}}`. Commands run on the game thread, so they need a loaded game.
+
+| Command | Arguments | What it does |
+|---|---|---|
+| `ping` | - | plugin version; answers even in the main menu |
+| `state` | - | selected character, camera, time, speed, dialogue state |
+| `teleport` | `{pos: [x, y, z]}` | moves the selected character |
+| `camera` | `{pos: [x, y, z]}` | puts the camera at a point |
+| `speed`, `pause` | `{value}`, `{on}` | game speed (0 = pause), pause |
+| `spawn` | `{id, pos?, faction?, age?}` | *next release.* Puts a character or animal from a CHARACTER / ANIMAL_CHARACTER record at the camera or at a point. `faction`: `"player"` or a FACTION string id (animal records usually name none). `age` (animals): 0 = pup .. 1 = adult, default 1 |
+| `screenshot` | `{path?}` | *next release.* Writes the game window to a PNG (default folder `%LOCALAPPDATA%\KenshiBridge\shots`), returns `{path, width, height}` |
+| `trace`, `trace_get` | `{on, filter}`, `{since}` | dialogue trace |
+
+Coordinates are game world units. In Cactus you can copy a point ("Copy coordinates") and paste it into the Game panel to teleport; accepted formats are `x, y, z` and `[x, y, z]`.
+
 ## Status
 
 Built for **Kenshi 1.0.65 (Steam or GOG)**, RE_Kenshi 0.3.5, KenshiLib 0.5.0. Checked in the running game: ping, state, teleport, camera, speed, pause, dialogue trace, town list. **Not yet checked with the real game:** the Cactus window and its MCP tools talking to the Bridge (they were tested against a stand-in server). Treat this as a Beta.
