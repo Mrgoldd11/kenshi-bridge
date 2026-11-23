@@ -27,6 +27,9 @@
 #include "trace.h"
 #include "rva.h"
 #include "borders.h"
+#include "worlddump.h"
+#include "spawn.h"
+#include "screenshot.h"
 
 using namespace kb;
 
@@ -185,6 +188,10 @@ bool runCommand(const Request& r, JWriter& w, std::string& code, std::string& me
 		return true;
 	}
 	if (r.cmd == "towns") return cmdTowns(r.args, w, code, message);
+	if (r.cmd == "dump") return cmdDump(r.args, w, code, message);
+	if (r.cmd == "flyover") return cmdFlyover(r.args, w, code, message);
+	if (r.cmd == "spawn") return cmdSpawn(r.args, w, code, message);
+	if (r.cmd == "screenshot") return cmdScreenshot(r.args, w, code, message);
 	code = "unknown_cmd";
 	message = "Unknown command: " + r.cmd;
 	return false;
@@ -211,6 +218,7 @@ void mainLoop_hook(GameWorld* thisptr, float time) {
 	mainLoop_orig(thisptr, time);
 	markFrame();
 	serveRequests();
+	try { worldDumpTick(); } catch (...) {}
 }
 
 } // namespace
@@ -224,7 +232,7 @@ __declspec(dllexport) void startPlugin() {
 		ErrorLog("[KenshiBridge] could not hook the main loop; bridge disabled");
 		return;
 	}
-	if (initRva()) { resolveFunctions(); initBorders(); }
+	if (initRva()) { resolveFunctions(); initBorders(); initWorldDump(); initSpawn(); }
 	else ErrorLog("[KenshiBridge] teleport/camera/speed and part of the trace are unavailable");
 	installTraceHooks();
 	if (startServer(port)) {

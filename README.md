@@ -1,13 +1,11 @@
 # Kenshi Bridge
 
-**[⬇ Download Kenshi Bridge 0.1.0 (Releases → Assets)](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest)**
-
-[![VirusTotal: 0 / 66 detections](https://img.shields.io/badge/VirusTotal-0%20%2F%2066%20detections-2ea44f?logo=virustotal&logoColor=white)](https://www.virustotal.com/gui/file/3277bad35949c030775712fd85ce5db5d16077646e93c34edc736f54d5012394)
+**[⬇ Download Kenshi Bridge 0.2.0 (Releases → Assets)](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest)**
 
 A small plugin for [RE_Kenshi](https://github.com/BFrizzleFoShizzle/RE_Kenshi) that connects a running Kenshi to external tools such as [Cactus](https://github.com/Mrgoldd11/Cactus) (a mod editor for Kenshi). Inside the game it opens a local server on `127.0.0.1:47801` and:
 
 - reports state: selected character, position, faction, current dialogue, in-game time;
-- runs commands: teleport, move the camera to a point, game speed, pause, list towns with border radii;
+- runs commands: teleport, move the camera to a point, game speed, pause, list towns with border radii, **spawn a character or animal**, **screenshot the game window**;
 - records a **dialogue trace**: which dialogue the game chose for an event, which rivals were rejected and why (conditions failed, or lost on score).
 
 It does **not** change game data (its `.mod` is empty) and listens on `127.0.0.1` only, so nothing outside your computer can connect.
@@ -25,35 +23,37 @@ Requests are JSON lines over TCP: `{"id": 1, "cmd": "state", "args": {}}`; the r
 | `teleport` | `{pos: [x, y, z]}` | moves the selected character |
 | `camera` | `{pos: [x, y, z]}` | puts the camera at a point |
 | `speed`, `pause` | `{value}`, `{on}` | game speed (0 = pause), pause |
-| `spawn` | `{id, pos?, faction?, age?}` | *next release.* Puts a character or animal from a CHARACTER / ANIMAL_CHARACTER record at the camera or at a point. `faction`: `"player"` or a FACTION string id (animal records usually name none). `age` (animals): 0 = pup .. 1 = adult, default 1 |
-| `screenshot` | `{path?}` | *next release.* Writes the game window to a PNG (default folder `%LOCALAPPDATA%\KenshiBridge\shots`), returns `{path, width, height}` |
+| `spawn` | `{id, pos?, faction?, age?}` | Puts a character or animal from a CHARACTER / ANIMAL_CHARACTER record at the camera or at a point. `faction`: `"player"` or a FACTION string id (animal records usually name none). `age` (animals): 0 = pup .. 1 = adult, default 1 |
+| `screenshot` | `{path?}` | Writes the game window to a PNG (default folder `%LOCALAPPDATA%\KenshiBridge\shots`), returns `{path, width, height}` |
 | `trace`, `trace_get` | `{on, filter}`, `{since}` | dialogue trace |
+| `dump` | `{now?, near?, range?, limit?}` | what has been collected from the game world (foliage and buildings); see the world dump section of [README_RU.md](README_RU.md) |
+| `flyover` | `{action, rect?, force?, dwell?, timeout?}` | fly the camera over the map so the plugin can dump every zone |
 
 Coordinates are game world units. In Cactus you can copy a point ("Copy coordinates") and paste it into the Game panel to teleport; accepted formats are `x, y, z` and `[x, y, z]`.
 
 ## Status
 
-Built for **Kenshi 1.0.65 (Steam or GOG)**, RE_Kenshi 0.3.5, KenshiLib 0.5.0. Checked in the running game: ping, state, teleport, camera, speed, pause, dialogue trace, town list. **Not yet checked with the real game:** the Cactus window and its MCP tools talking to the Bridge (they were tested against a stand-in server). Treat this as a Beta.
+Built for **Kenshi 1.0.65 (Steam or GOG)**, RE_Kenshi 0.3.5, KenshiLib 0.5.0. Checked in the running game with Cactus 1.0: ping, state, teleport, camera, speed, pause, dialogue trace, town list, spawn, screenshot, and the Cactus window / MCP tools talking to the Bridge.
 
 ## Install (from the release)
 
 1. Install RE_Kenshi and start the game through it at least once.
-2. Download `KenshiBridge-0.1.0-win-x64.zip` from [Releases](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest) and copy the `KenshiBridge` folder into `<Kenshi>\mods\`.
+2. Download `KenshiBridge-0.2.0-win-x64.zip` from [Releases](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest) and copy the `KenshiBridge` folder into `<Kenshi>\mods\`.
 3. Enable **KenshiBridge** in the game launcher's mod tab.
-4. Check `<Kenshi>\RE_Kenshi_log.txt` for `[KenshiBridge] 0.1.0 listening on 127.0.0.1:47801`.
+4. Check `<Kenshi>\RE_Kenshi_log.txt` for `[KenshiBridge] 0.2.0 listening on 127.0.0.1:47801`.
 
 Uninstall: disable the mod in the launcher and delete the folder.
 
 ### Is it safe?
 
-The release archive was scanned on [VirusTotal](https://www.virustotal.com/gui/file/3277bad35949c030775712fd85ce5db5d16077646e93c34edc736f54d5012394) on 2026-11-07: **0 of 66 engines flagged it**. A plugin DLL is loaded into the game process, so you should be able to check it yourself:
+A plugin DLL is loaded into the game process, so you should be able to check it yourself:
 
 ```
-SHA-256  3277bad35949c030775712fd85ce5db5d16077646e93c34edc736f54d5012394
-         KenshiBridge-0.1.0-win-x64.zip
+SHA-256  9786ccd79520c435a34227efe8d774bee380301ec2f15c8723a5ba81e896b856
+         KenshiBridge-0.2.0-win-x64.zip
 ```
 
-In PowerShell: `Get-FileHash .\KenshiBridge-0.1.0-win-x64.zip` — the value must match. The full source is in this repository (GPLv3) and the plugin listens on `127.0.0.1` only.
+In PowerShell: `Get-FileHash .\KenshiBridge-0.2.0-win-x64.zip` — the value must match. The full source is in this repository (GPLv3) and the plugin listens on `127.0.0.1` only.
 
 ## Build from source
 
