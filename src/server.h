@@ -7,7 +7,7 @@
 namespace kb {
 
 const unsigned short kDefaultPort = 47801;
-const char* const kPluginVersion = "0.2.0";
+const char* const kPluginVersion = "1.0.0";
 const int kProtocolVersion = 1;
 
 struct Request {

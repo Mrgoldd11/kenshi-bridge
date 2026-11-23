@@ -39,7 +39,7 @@ scripts\uninstall.cmd "D:\SteamLibrary\steamapps\common\Kenshi"
 ```
 
 Работает ли плагин, видно в `<Kenshi>\RE_Kenshi_log.txt`. Там появится строка
-`[KenshiBridge] 0.2.0 listening on 127.0.0.1:47801`.
+`[KenshiBridge] 1.0.0 listening on 127.0.0.1:47801`.
 
 ## Сборка
 

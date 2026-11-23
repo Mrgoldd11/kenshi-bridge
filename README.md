@@ -1,6 +1,6 @@
 # Kenshi Bridge
 
-**[⬇ Download Kenshi Bridge 0.2.0 (Releases → Assets)](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest)**
+**[⬇ Download Kenshi Bridge 1.0.0 (Releases → Assets)](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest)**
 
 A small plugin for [RE_Kenshi](https://github.com/BFrizzleFoShizzle/RE_Kenshi) that connects a running Kenshi to external tools such as [Cactus](https://github.com/Mrgoldd11/Cactus) (a mod editor for Kenshi). Inside the game it opens a local server on `127.0.0.1:47801` and:
 
@@ -38,9 +38,9 @@ Built for **Kenshi 1.0.65 (Steam or GOG)**, RE_Kenshi 0.3.5, KenshiLib 0.5.0. Ch
 ## Install (from the release)
 
 1. Install RE_Kenshi and start the game through it at least once.
-2. Download `KenshiBridge-0.2.0-win-x64.zip` from [Releases](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest) and copy the `KenshiBridge` folder into `<Kenshi>\mods\`.
+2. Download `KenshiBridge-1.0.0-win-x64.zip` from [Releases](https://github.com/Mrgoldd11/Kenshi-Bridge/releases/latest) and copy the `KenshiBridge` folder into `<Kenshi>\mods\`.
 3. Enable **KenshiBridge** in the game launcher's mod tab.
-4. Check `<Kenshi>\RE_Kenshi_log.txt` for `[KenshiBridge] 0.2.0 listening on 127.0.0.1:47801`.
+4. Check `<Kenshi>\RE_Kenshi_log.txt` for `[KenshiBridge] 1.0.0 listening on 127.0.0.1:47801`.
 
 Uninstall: disable the mod in the launcher and delete the folder.
 
@@ -49,11 +49,11 @@ Uninstall: disable the mod in the launcher and delete the folder.
 A plugin DLL is loaded into the game process, so you should be able to check it yourself:
 
 ```
-SHA-256  9786ccd79520c435a34227efe8d774bee380301ec2f15c8723a5ba81e896b856
-         KenshiBridge-0.2.0-win-x64.zip
+SHA-256  fcf2269fe27792496887653908b850b9c08969b917602e2010f57a9b8ec3ae5e
+         KenshiBridge-1.0.0-win-x64.zip
 ```
 
-In PowerShell: `Get-FileHash .\KenshiBridge-0.2.0-win-x64.zip` — the value must match. The full source is in this repository (GPLv3) and the plugin listens on `127.0.0.1` only.
+In PowerShell: `Get-FileHash .\KenshiBridge-1.0.0-win-x64.zip` — the value must match. The full source is in this repository (GPLv3) and the plugin listens on `127.0.0.1` only.
 
 ## Build from source
 
