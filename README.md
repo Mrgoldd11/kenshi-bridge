@@ -46,7 +46,7 @@ Uninstall: disable the mod in the launcher and delete the folder.
 
 ### Is it safe?
 
-A plugin DLL is loaded into the game process, so you should be able to check it yourself:
+The release archive was scanned on [VirusTotal](https://www.virustotal.com/gui/file/fcf2269fe27792496887653908b850b9c08969b917602e2010f57a9b8ec3ae5e) on 2026-11-24: **0 of 65 engines flagged it**. A plugin DLL is loaded into the game process, so you should be able to check it yourself:
 
 ```
 SHA-256  fcf2269fe27792496887653908b850b9c08969b917602e2010f57a9b8ec3ae5e
